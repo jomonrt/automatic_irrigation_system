@@ -1,0 +1,441 @@
+
+Automatic_water.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001ec  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  000001ec  00000280  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000008  00800062  00800062  00000282  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000282  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000002b4  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000118  00000000  00000000  000002f0  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000bc2  00000000  00000000  00000408  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000862  00000000  00000000  00000fca  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000738  00000000  00000000  0000182c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000001dc  00000000  00000000  00001f64  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000495  00000000  00000000  00002140  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000177  00000000  00000000  000025d5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000b8  00000000  00000000  0000274c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	70 c0       	rjmp	.+224    	; 0xee <__vector_6>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	29 c0       	rjmp	.+82     	; 0x70 <__vector_14>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	ec ee       	ldi	r30, 0xEC	; 236
+  3a:	f1 e0       	ldi	r31, 0x01	; 1
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a2 36       	cpi	r26, 0x62	; 98
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	20 e0       	ldi	r18, 0x00	; 0
+  4a:	a2 e6       	ldi	r26, 0x62	; 98
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	aa 36       	cpi	r26, 0x6A	; 106
+  54:	b2 07       	cpc	r27, r18
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	99 d0       	rcall	.+306    	; 0x18c <main>
+  5a:	c6 c0       	rjmp	.+396    	; 0x1e8 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <adc_init>:
+{
+	ADMUX |= (1<<MUX0);
+	ADCSRA |= (1<<ADSC);
+	while(ADCSRA & (1<<ADSC));
+	return (ADC);
+}
+  5e:	3e 9a       	sbi	0x07, 6	; 7
+  60:	86 b1       	in	r24, 0x06	; 6
+  62:	8f 68       	ori	r24, 0x8F	; 143
+  64:	86 b9       	out	0x06, r24	; 6
+  66:	78 94       	sei
+  68:	08 95       	ret
+
+0000006a <start_adc_conversion_automatic>:
+  6a:	38 9a       	sbi	0x07, 0	; 7
+  6c:	36 9a       	sbi	0x06, 6	; 6
+  6e:	08 95       	ret
+
+00000070 <__vector_14>:
+
+
+
+ISR(ADC_vect)
+{
+  70:	1f 92       	push	r1
+  72:	0f 92       	push	r0
+  74:	0f b6       	in	r0, 0x3f	; 63
+  76:	0f 92       	push	r0
+  78:	11 24       	eor	r1, r1
+  7a:	8f 93       	push	r24
+  7c:	9f 93       	push	r25
+	
+	adc_value = (int)(ADC);
+  7e:	84 b1       	in	r24, 0x04	; 4
+  80:	95 b1       	in	r25, 0x05	; 5
+  82:	90 93 63 00 	sts	0x0063, r25	; 0x800063 <__data_end+0x1>
+  86:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <__data_end>
+	
+  8a:	9f 91       	pop	r25
+  8c:	8f 91       	pop	r24
+  8e:	0f 90       	pop	r0
+  90:	0f be       	out	0x3f, r0	; 63
+  92:	0f 90       	pop	r0
+  94:	1f 90       	pop	r1
+  96:	18 95       	reti
+
+00000098 <eeprom_write>:
+
+
+void eeprom_write(uint8_t location, uint8_t data)
+{
+	
+	eeprom_write_byte ((uint8_t*) location, data); //  write the byte 64 to location 23 of the EEPROM 
+  98:	90 e0       	ldi	r25, 0x00	; 0
+  9a:	99 d0       	rcall	.+306    	; 0x1ce <eeprom_write_byte>
+  9c:	08 95       	ret
+
+0000009e <get_timer_seconds>:
+	/* Save global interrupt flag */
+	//sreg = 0x3F;
+	/* Disable interrupts */
+	
+	
+}
+  9e:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <timer>
+  a2:	90 91 65 00 	lds	r25, 0x0065	; 0x800065 <timer+0x1>
+  a6:	08 95       	ret
+
+000000a8 <get_timer_minutes>:
+  a8:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <timer+0x2>
+  ac:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <timer+0x3>
+  b0:	08 95       	ret
+
+000000b2 <set_timer_seconds>:
+  b2:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <timer+0x1>
+  b6:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <timer>
+  ba:	08 95       	ret
+
+000000bc <set_timer_minutes>:
+  bc:	90 93 67 00 	sts	0x0067, r25	; 0x800067 <timer+0x3>
+  c0:	80 93 66 00 	sts	0x0066, r24	; 0x800066 <timer+0x2>
+  c4:	08 95       	ret
+
+000000c6 <timer_init>:
+
+
+void timer_init(void)
+{
+	
+	TCCR1A = 0x00; //clearing control register A
+  c6:	1f bc       	out	0x2f, r1	; 47
+	TCCR1B = 0x00;// clearing control register B
+  c8:	1e bc       	out	0x2e, r1	; 46
+	TCNT1 = 0x00; //clearing counter register
+  ca:	1d bc       	out	0x2d, r1	; 45
+  cc:	1c bc       	out	0x2c, r1	; 44
+
+    TCCR1B |= (1 << WGM12); //setting CTC mode for OCR1A as top
+  ce:	8e b5       	in	r24, 0x2e	; 46
+  d0:	88 60       	ori	r24, 0x08	; 8
+  d2:	8e bd       	out	0x2e, r24	; 46
+	OCR1A = 62501;     // setting top value OCR1A at 1MHz
+  d4:	85 e2       	ldi	r24, 0x25	; 37
+  d6:	94 ef       	ldi	r25, 0xF4	; 244
+  d8:	9b bd       	out	0x2b, r25	; 43
+  da:	8a bd       	out	0x2a, r24	; 42
+	TIMSK |= (1 << OCIE1A ); //output compare match a enabled
+  dc:	89 b7       	in	r24, 0x39	; 57
+  de:	80 61       	ori	r24, 0x10	; 16
+  e0:	89 bf       	out	0x39, r24	; 57
+	sei();
+  e2:	78 94       	sei
+  e4:	08 95       	ret
+
+000000e6 <timer_start>:
+
+//Function for starting the timer
+void timer_start(void)
+{
+	
+	TCCR1B |= (1 << CS10)|(1 << CS11); //Selecting clock 
+  e6:	8e b5       	in	r24, 0x2e	; 46
+  e8:	83 60       	ori	r24, 0x03	; 3
+  ea:	8e bd       	out	0x2e, r24	; 46
+  ec:	08 95       	ret
+
+000000ee <__vector_6>:
+}
+
+
+//timer 1 isr
+ISR(TIMER1_COMPA_vect)
+{
+  ee:	1f 92       	push	r1
+  f0:	0f 92       	push	r0
+  f2:	0f b6       	in	r0, 0x3f	; 63
+  f4:	0f 92       	push	r0
+  f6:	11 24       	eor	r1, r1
+  f8:	2f 93       	push	r18
+  fa:	3f 93       	push	r19
+  fc:	4f 93       	push	r20
+  fe:	5f 93       	push	r21
+ 100:	6f 93       	push	r22
+ 102:	7f 93       	push	r23
+ 104:	8f 93       	push	r24
+ 106:	9f 93       	push	r25
+ 108:	af 93       	push	r26
+ 10a:	bf 93       	push	r27
+ 10c:	ef 93       	push	r30
+ 10e:	ff 93       	push	r31
+
+    timer.seconds++;
+ 110:	e4 e6       	ldi	r30, 0x64	; 100
+ 112:	f0 e0       	ldi	r31, 0x00	; 0
+ 114:	80 81       	ld	r24, Z
+ 116:	91 81       	ldd	r25, Z+1	; 0x01
+ 118:	01 96       	adiw	r24, 0x01	; 1
+ 11a:	91 83       	std	Z+1, r25	; 0x01
+ 11c:	80 83       	st	Z, r24
+	timer.adc_second++;
+ 11e:	84 81       	ldd	r24, Z+4	; 0x04
+ 120:	95 81       	ldd	r25, Z+5	; 0x05
+ 122:	01 96       	adiw	r24, 0x01	; 1
+ 124:	95 83       	std	Z+5, r25	; 0x05
+ 126:	84 83       	std	Z+4, r24	; 0x04
+
+	if(timer.seconds >= 60)  //Checking 1 mint
+ 128:	80 81       	ld	r24, Z
+ 12a:	91 81       	ldd	r25, Z+1	; 0x01
+ 12c:	cc 97       	sbiw	r24, 0x3c	; 60
+ 12e:	3c f0       	brlt	.+14     	; 0x13e <__vector_6+0x50>
+	{
+		timer.seconds = 0;
+ 130:	11 82       	std	Z+1, r1	; 0x01
+ 132:	10 82       	st	Z, r1
+		timer.minutes++;
+ 134:	82 81       	ldd	r24, Z+2	; 0x02
+ 136:	93 81       	ldd	r25, Z+3	; 0x03
+ 138:	01 96       	adiw	r24, 0x01	; 1
+ 13a:	93 83       	std	Z+3, r25	; 0x03
+ 13c:	82 83       	std	Z+2, r24	; 0x02
+	}
+
+	if(timer.adc_second == 120) // Checking ADC conversion time
+ 13e:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <timer+0x4>
+ 142:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <timer+0x5>
+ 146:	88 37       	cpi	r24, 0x78	; 120
+ 148:	91 05       	cpc	r25, r1
+ 14a:	29 f4       	brne	.+10     	; 0x156 <__vector_6+0x68>
+	{
+		timer.adc_second =0;
+ 14c:	10 92 69 00 	sts	0x0069, r1	; 0x800069 <timer+0x5>
+ 150:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <timer+0x4>
+		start_adc_conversion_automatic();	
+ 154:	8a df       	rcall	.-236    	; 0x6a <start_adc_conversion_automatic>
+	}
+	
+}
+ 156:	ff 91       	pop	r31
+ 158:	ef 91       	pop	r30
+ 15a:	bf 91       	pop	r27
+ 15c:	af 91       	pop	r26
+ 15e:	9f 91       	pop	r25
+ 160:	8f 91       	pop	r24
+ 162:	7f 91       	pop	r23
+ 164:	6f 91       	pop	r22
+ 166:	5f 91       	pop	r21
+ 168:	4f 91       	pop	r20
+ 16a:	3f 91       	pop	r19
+ 16c:	2f 91       	pop	r18
+ 16e:	0f 90       	pop	r0
+ 170:	0f be       	out	0x3f, r0	; 63
+ 172:	0f 90       	pop	r0
+ 174:	1f 90       	pop	r1
+ 176:	18 95       	reti
+
+00000178 <reset_timer>:
+	
+	uint8_t status = eeprom_read(EEPROM_STATUS_LOCATION);
+	if(status == 0x01)
+	{
+		valve_status = true;
+		set_bit(VALVE_PORT, VALVE_PIN);
+ 178:	80 e0       	ldi	r24, 0x00	; 0
+ 17a:	90 e0       	ldi	r25, 0x00	; 0
+ 17c:	9f df       	rcall	.-194    	; 0xbc <set_timer_minutes>
+ 17e:	80 e0       	ldi	r24, 0x00	; 0
+ 180:	90 e0       	ldi	r25, 0x00	; 0
+ 182:	97 df       	rcall	.-210    	; 0xb2 <set_timer_seconds>
+ 184:	08 95       	ret
+
+00000186 <valve_initialisation>:
+	
+}
+
+void valve_initialisation(void)
+{
+	set_bit(VALVE_DDR,VALVE_PIN);
+ 186:	b9 9a       	sbi	0x17, 1	; 23
+	clear_bit(VALVE_PORT,VALVE_PIN);
+ 188:	c1 98       	cbi	0x18, 1	; 24
+ 18a:	08 95       	ret
+
+0000018c <main>:
+
+
+
+int main(void)
+{
+   valve_initialisation();
+ 18c:	fc df       	rcall	.-8      	; 0x186 <valve_initialisation>
+   //check_previous_valve_status();
+   adc_init();
+ 18e:	67 df       	rcall	.-306    	; 0x5e <adc_init>
+   start_adc_conversion_automatic();
+ 190:	6c df       	rcall	.-296    	; 0x6a <start_adc_conversion_automatic>
+   timer_init();
+ 192:	99 df       	rcall	.-206    	; 0xc6 <timer_init>
+   timer_start();
+ 194:	a8 df       	rcall	.-176    	; 0xe6 <timer_start>
+			    {
+				    
+				    //if(get_adc_value() >= ADC_CUT_OFF_VALUE)
+				   // {
+					    set_bit(VALVE_PORT, VALVE_PIN);
+					    valve_status = VALVE_ON;
+ 196:	c1 e0       	ldi	r28, 0x01	; 1
+
+    while (1) 
+    {
+		
+		
+		switch(valve_status)
+ 198:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__data_start>
+ 19c:	81 30       	cpi	r24, 0x01	; 1
+ 19e:	61 f0       	breq	.+24     	; 0x1b8 <main+0x2c>
+		{
+			
+			case VALVE_OFF:
+			    if(get_timer_minutes() >= OFF_TIME)  //off time
+ 1a0:	83 df       	rcall	.-250    	; 0xa8 <get_timer_minutes>
+ 1a2:	18 16       	cp	r1, r24
+ 1a4:	19 06       	cpc	r1, r25
+ 1a6:	c4 f7       	brge	.-16     	; 0x198 <main+0xc>
+			    {
+				    
+				    //if(get_adc_value() >= ADC_CUT_OFF_VALUE)
+				   // {
+					    set_bit(VALVE_PORT, VALVE_PIN);
+ 1a8:	c1 9a       	sbi	0x18, 1	; 24
+					    valve_status = VALVE_ON;
+ 1aa:	c0 93 60 00 	sts	0x0060, r28	; 0x800060 <__data_start>
+					    eeprom_write(EEPROM_STATUS_LOCATION, VALVE_ON);
+ 1ae:	6c 2f       	mov	r22, r28
+ 1b0:	82 e0       	ldi	r24, 0x02	; 2
+ 1b2:	72 df       	rcall	.-284    	; 0x98 <eeprom_write>
+				   // }
+					
+				    reset_timer();
+ 1b4:	e1 df       	rcall	.-62     	; 0x178 <reset_timer>
+ 1b6:	f0 cf       	rjmp	.-32     	; 0x198 <main+0xc>
+			
+			   break;
+				
+			   
+		    case VALVE_ON:
+			    if(get_timer_seconds() >= ON_TIME)   //on time
+ 1b8:	72 df       	rcall	.-284    	; 0x9e <get_timer_seconds>
+ 1ba:	44 97       	sbiw	r24, 0x14	; 20
+ 1bc:	6c f3       	brlt	.-38     	; 0x198 <main+0xc>
+			    {
+				    clear_bit(VALVE_PORT, VALVE_PIN);
+ 1be:	c1 98       	cbi	0x18, 1	; 24
+				    valve_status = VALVE_OFF;
+ 1c0:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__data_start>
+				    eeprom_write(EEPROM_STATUS_LOCATION, VALVE_OFF);
+ 1c4:	60 e0       	ldi	r22, 0x00	; 0
+ 1c6:	82 e0       	ldi	r24, 0x02	; 2
+ 1c8:	67 df       	rcall	.-306    	; 0x98 <eeprom_write>
+				    reset_timer();
+ 1ca:	d6 df       	rcall	.-84     	; 0x178 <reset_timer>
+ 1cc:	e5 cf       	rjmp	.-54     	; 0x198 <main+0xc>
+
+000001ce <eeprom_write_byte>:
+ 1ce:	26 2f       	mov	r18, r22
+
+000001d0 <eeprom_write_r18>:
+ 1d0:	e1 99       	sbic	0x1c, 1	; 28
+ 1d2:	fe cf       	rjmp	.-4      	; 0x1d0 <eeprom_write_r18>
+ 1d4:	9f bb       	out	0x1f, r25	; 31
+ 1d6:	8e bb       	out	0x1e, r24	; 30
+ 1d8:	2d bb       	out	0x1d, r18	; 29
+ 1da:	0f b6       	in	r0, 0x3f	; 63
+ 1dc:	f8 94       	cli
+ 1de:	e2 9a       	sbi	0x1c, 2	; 28
+ 1e0:	e1 9a       	sbi	0x1c, 1	; 28
+ 1e2:	0f be       	out	0x3f, r0	; 63
+ 1e4:	01 96       	adiw	r24, 0x01	; 1
+ 1e6:	08 95       	ret
+
+000001e8 <_exit>:
+ 1e8:	f8 94       	cli
+
+000001ea <__stop_program>:
+ 1ea:	ff cf       	rjmp	.-2      	; 0x1ea <__stop_program>
